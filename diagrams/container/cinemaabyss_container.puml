@@ -1,0 +1,41 @@
+@startuml cinemaabyss_container
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Система «Кинобездна» - Диаграмма контейнеров (To-Be)
+
+Person(user, "Пользователь", "Клиент сервиса - использует мобильные устройства, ноутбуки, смарт ТВ")
+
+System_Ext(payment_system, "Платёжная система", "Внешняя платёжная система")
+System_Ext(recommendation_system, "Рекомендательная система", "Внешний сервис рекомендаций")
+System_Ext(streaming_system, "Онлайн-кинотеатры", "Партнёрские стриминговые платформы")
+
+System_Boundary(cinema, "Система «Кинобездна»") {
+    
+    Container(api_gateway, "API Gateway\n(Proxy Service)", "", "Единая точка входа")
+    
+    Container(monolith, "Monolith", "Go + PostgreSQL", "Пользователи, платежи, подписки")
+    Container(movie_service, "Movies Service", "Go + PostgreSQL", "Метаданные фильмов, рейтинги, жанры")
+    Container(event_service, "Events Service", "Go + Kafka", "События: просмотры, оценки, платежи, авторизации")
+    
+    ContainerQueue(message_queue, "Kafka", "Очередь сообщений")
+    ContainerDb(database, "PostgreSQL", "База данных")
+}
+
+Rel(user, api_gateway, "HTTPS", "Запросы")
+
+Rel(api_gateway, monolith, "Маршрутизирует запросы", "HTTP/REST")
+Rel(api_gateway, movie_service, "Маршрутизирует запросы", "HTTP/REST")
+Rel(api_gateway, event_service, "Отправляет события", "HTTP/REST")
+
+Rel(monolith, database, "Читает/Пишет", "SQL")
+Rel(movie_service, database, "Читает/Пишет", "SQL")
+
+Rel(event_service, message_queue, "Читает/Пишет события")
+Rel(monolith, message_queue, "Пишет события")
+Rel(movie_service, message_queue, "Пишет события")
+
+Rel(monolith, payment_system, "HTTPS", "Обработка платежей")
+Rel(monolith, recommendation_system, "Получает рекомендации")
+Rel(monolith, streaming_system, "Интеграция с контентом")
+
+@enduml
