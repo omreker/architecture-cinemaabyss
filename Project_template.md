@@ -6,51 +6,51 @@
 
 ## 1. Proxy
 
-![CinemaAbyss API Tests](screenshots\cinemaabyss_api_tests.png)
+![CinemaAbyss API Tests](screenshots/cinemaabyss_api_tests.png)
 
 ### MOVIES_MIGRATION_PERCENT: "20"
 
-![Proxy Service Test](screenshots\proxy_service_test.png)
+![Proxy Service Test](screenshots/proxy_service_test.png)
 
 ## 2. Kafka
 
 ### Kafka Tests
 
-![Kafka Tests](screenshots\kafka_tests.png)
+![Kafka Tests](screenshots/kafka_tests.png)
 
 ### Kafka Topics
 
-![Kafka Topics](screenshots\kafka_topics.png)
+![Kafka Topics](screenshots/kafka_topics.png)
 
 # Задание 3
 
 ## CI/CD
 
-![CI/CD](screenshots\ci_cd.png)
+![CI/CD](screenshots/ci_cd.png)
 
 ## Proxy в Kubernetes
 
 ## Helm
 
-![API Movies](screenshots\api_movies.png)
+![API Movies](screenshots/api_movies.png)
 
 ## Event Service Tests
 
-![Event Service Tests](screenshots\event_service_tests.png)
+![Event Service Tests](screenshots/event_service_tests.png)
 
 ## Event Service Logs
 
-![Event Service Logs](screenshots\event_service_logs.png)
+![Event Service Logs](screenshots/event_service_logs.png)
 
 # Задание 4
 
 ## Helm
 
-![Helm](screenshots\helm.png)
+![Helm](screenshots/helm.png)
 
 ## API Movies after Helm releases
 
-![API Movies](screenshots\api_movies_2.png)
+![API Movies](screenshots/api_movies_2.png)
 
 ## Удаляем все
 
